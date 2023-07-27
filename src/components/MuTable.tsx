@@ -3,12 +3,14 @@ import CharacterContext, {
   CharacterContextProps,
 } from "../tx/CharacterContext";
 import { Typography} from '@mui/material'
-import { CHARACTER_COLUMNS } from "../config/types.d";
+import { getColumns } from "../config/methods";
 import { MaterialReactTable} from 'material-react-table'
 
 export default function MuTable() {
   const { data, fetchNextPage, isError, isFetching, isLoading, table, virtualInstance } =
     useContext<Partial<CharacterContextProps>>(CharacterContext);
+
+  const CHARACTER_COLUMNS = getColumns();
 
   const flatData = useMemo(
     () => data?.pages.flatMap((page) => page.results) ?? [],

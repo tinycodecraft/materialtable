@@ -1,4 +1,4 @@
-import { MRT_ColumnDef } from "material-react-table";
+
 
 export type CharacterType = {
   id: number;
@@ -30,22 +30,3 @@ export type CharacterResultResponse ={
 export const FETCHSIZE = 20;
 
 
-export const CHARACTER_COLUMNS: MRT_ColumnDef<CharacterType>[] = [
-  {
-    accessorKey: 'id',
-    header: 'Id',
-  },
-  {
-    accessorKey: 'name',
-    header: 'Name',
-  },
-  {
-    accessorKey: 'gender',
-    header: 'Gender',
-  },
-  {
-    accessorKey: 'species',
-    header: 'Species',
-  },
-  
-];
