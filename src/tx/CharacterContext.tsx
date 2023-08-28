@@ -1,5 +1,6 @@
 import React, { createContext, useCallback } from "react";
 import { useState, useRef } from "react";
+import toast from 'react-hot-toast'
 import {
   type MRT_ColumnFiltersState,
   type MRT_SortingState,
@@ -39,8 +40,11 @@ const CharacterContext = createContext<Partial<CharacterContextProps>>({});
 
 export const CharacterProvider = ({
   children,
+  debug=false
+
 }: {
-  children: React.ReactNode;
+  children: React.ReactNode,
+  debug: boolean
 }) => {
   const tableContainerRef = useRef<HTMLDivElement>(null); //we can get access to the underlying TableContainer element and react to its scroll events
   const rowVirtualizerInstanceRef =
@@ -67,6 +71,10 @@ export const CharacterProvider = ({
         return json;
       },
       getNextPageParam: (_lastgroup, groups) => {
+        // the groups length reflect the cached pages
+        // the _lastgroup is url return object with number of pages for the query , next, prev url plus total record count
+        debug && toast.success(`cache pages length ${groups.length}, with info page : ${_lastgroup.info.pages}`)        
+        console.log(_lastgroup)
         if (groups.length < _lastgroup.info.pages) return groups.length + 1;
         return null;
       },

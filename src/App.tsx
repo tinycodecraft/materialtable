@@ -3,6 +3,7 @@ import React from "react";
 import "./App.css";
 import MuTable from "./components/MuTable";
 import { CharacterProvider } from "./tx/CharacterContext";
+import { Toaster } from "react-hot-toast";
 
 function App() {
   return (
@@ -19,7 +20,8 @@ function App() {
         >
           Learn React
         </a>
-        <CharacterProvider>
+        <CharacterProvider debug={true}>
+          <Toaster />
           <MuTable />
         </CharacterProvider>
       </header>
